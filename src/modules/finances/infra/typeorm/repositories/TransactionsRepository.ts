@@ -12,6 +12,11 @@ class TransactionsRepository implements ITransactionsRepository{
     constructor() {
         this.repository= getRepository(Transaction)
     }
+   
+    async findById(id: string): Promise<Transaction> {
+        const transaction = await this.repository.findOne(id)
+        return transaction
+    }
     async list(): Promise<Transaction[]> {
         const transactions = await this.repository.find()
         return transactions
@@ -28,6 +33,10 @@ class TransactionsRepository implements ITransactionsRepository{
         })
         await this.repository.save(transaction)
         return transaction
+        
+    }
+    async delete(id:string): Promise<void> {
+         await this.repository.delete({id}) 
         
     }
 

@@ -4,7 +4,9 @@ import {Transaction} from '../infra/typeorm/entities/Transaction'
 
 interface ITransactionsRepository{
     create(data: ICreateTransactionDTO): Promise<Transaction>
-    list():Promise<Transaction[]>
+    findById(id:string): Promise<Transaction>
+    list(): Promise<Transaction[]>
+    delete(id: string): Promise<void>
 
 }
 
